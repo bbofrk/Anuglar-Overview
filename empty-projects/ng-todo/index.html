@@ -24,26 +24,26 @@
         </span>
         <input ng-model="newTask" placeholder="New Todo" class="form-control" type="text"><!-- model  -->
         <span class="input-group-btn">
-          <button class="btn btn-success" type="button"><!-- click  -->
+          <button class="btn btn-success" type="button" ng-click="addNewTask()"><!-- click  -->
             <i class="glyphicon glyphicon-plus"></i>
           </button>
         </span>
       </div>
 
-      <div class="input-group input-group-lg"><!-- repeat  -->
+      <div class="input-group input-group-lg" ng-repeat="todo in todos"><!-- repeat  -->
         <span class="input-group-addon">
-          <input type="checkbox"> <!-- model -->
+          <input type="checkbox" ng-model="todo.completed"> <!-- model -->
         </span>
-        <input class="form-control" type="text"><!-- model / class  -->
+        <input class="form-control" type="text" ng-model="todo.val" ng-class="{ finished: todo.completed }"><!-- model / class  -->
         <span class="input-group-btn">
-          <button class="btn btn-danger" type="button"><!-- click  -->
-            <i class="glyphicon glyphicon-remove"></i>
+          <button class="btn btn-danger" type="button" ng-click="todos.splice($index, 1)"><!-- click  -->
+            <i ng-show="todo.completed" class="glyphicon glyphicon-remove"></i>
           </button>
         </span>
       </div>
 
       <div class="btn-clear-group">
-        <button class="btn btn-primary btn-clear">Clear Completed</button><!-- click -->
+        <button class="btn btn-primary btn-clear" ng-click="clearCompleted()">Clear Completed</button><!-- click -->
       </div>
     </div>
   </section>
